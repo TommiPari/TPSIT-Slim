@@ -3,15 +3,22 @@ use Slim\Factory\AppFactory;
 
 require __DIR__ . '/vendor/autoload.php';
 require __DIR__ . '/controllers/AlunniController.php';
-require __DIR__ . '/controllers/includes/Database.php';
+require __DIR__ . '/controllers/CertificazioniController.php';
+require __DIR__ . '/includes/Database.php';
 
 $app = AppFactory::create();
 
 // curl http://localhost:8080/alunni
 $app->get('/alunni', "AlunniController:index");
 
+// curl http://localhost:8080/certificazioni
+$app->get('/certificazioni', "CertificazioniController:index");
+
 // curl http://localhost:8080/alunni/id
 $app->get('/alunni/{id}', "AlunniController:show");
+
+// curl http://localhost:8080/certificazioni/id
+$app->get('/certificazioni/{id}', "CertificazioniController:show");
 
 // curl -X POST http://localhost:8080/alunni -H "Content-Type: application/json" -d '{"nome" : "tommaso", "cognome" : "parigi"}'
 $app->post('/alunni', "AlunniController:create");

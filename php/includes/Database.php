@@ -16,7 +16,10 @@
         public function select($table, $where = 1) {
             $query = "SELECT * FROM $table WHERE $where";
             if ($result = $this->query($query)) {
-                return $result->fetch_all(MYSQLI_ASSOC);
+                while ($row = $result->fetch_assoc()) {
+                    $array[] = $row;
+                }
+                return $array;
             }
             return null;
         }
